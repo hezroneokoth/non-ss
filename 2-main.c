@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * main - function for UNIX CLI that also handles args
@@ -8,7 +8,7 @@
 int main(void)
 {
 	char *line;
-	char *arguments[MAX_ARGUMENTS];
+	char *arguments[MAX_ARGS];
 
 	signal(SIGINT, sigint_handler);
 	while (1)
@@ -23,7 +23,8 @@ int main(void)
 		}
 		if (line[0] != '\0')
 		{
-			int argc = create_arguments(line, arguments, MAX_ARGUMENTS);
+			int argc = create_arguments(line, arguments, MAX_ARGS);
+
 			execute_command(arguments[0], arguments);
 		}
 		free(line);
